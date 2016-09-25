@@ -5,10 +5,10 @@ return array(
     'header' => array(
         'type' => 'layout'
     ),
-    'content' => array(
-        'type' => 'layout'
-    ),
+//    'content' => array(
+//        'type' => 'layout'
+//    ),
     'footer' => array(
-        'type' => 'layout'
+        'type' => 'view'
     )
 );
