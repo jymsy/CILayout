@@ -14,6 +14,7 @@
                 <li>丨</li>
                 <li><a onclick="ga('send', 'event', '首页', '按钮-联系我们');" href="http://www.izaodao.com/Index/About#contact" target="_blank">联系我们</a></li>
                 <li>丨</li>
+                <li><a onclick="ga('send', 'event', '首页', '按钮-网站地图');" href="http://www.izaodao.com/sitemap.php" target="_blank">网站地图</a></li>
                 <!--<li>丨</li>
                 <li>大连早道科技有限公司</li>-->
             </ul>

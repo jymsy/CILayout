@@ -7,6 +7,7 @@ class Layout
     public $layout;
     protected $pageData = array();
     protected $module;
+//    public static $modulePath = APPPATH.'modules/';
 
     public function __construct()
     {
@@ -63,11 +64,13 @@ class Layout
      */
     protected function loadView($name, $module = 'public')
     {
+        $viewPath = $name;
         if ($this->module !== $module) {
-            return $this->CI->load->view($module.'/'.$name, $this->pageData, true);
-        } else {
-            return $this->CI->load->view($name, $this->pageData, true);
+            if (!file_exists(APPPATH.'modules/'.$this->module.'/views/'.$name.'.php')) {
+                $viewPath = $module . '/' . $name;
+            }
         }
+        return $this->CI->load->view($viewPath, $this->pageData, true);
     }
 
     /**
@@ -82,7 +85,7 @@ class Layout
             'modules',
             $module,
             'meta',
-            $name.'.php'
+            $name . '.php'
         );
         $file = APPPATH . implode(DIRECTORY_SEPARATOR, $path);
         if (file_exists($file)) {

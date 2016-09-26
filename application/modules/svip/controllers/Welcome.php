@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 	    $this->load->library('layout');
+        $this->load->library('layout');
         $ret = $this->layout->load('svip', 'main');
         echo $ret;
 //        echo 123;
