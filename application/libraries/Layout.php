@@ -3,17 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Layout
 {
-
     public $CI;
     public $layout;
-    public $module;
-    protected $data;
+    protected $pageData = array();
+    protected $module;
 
-    public function Layout($layout = 'main', $module = 'public')
+    public function __construct()
     {
         $this->CI =& get_instance();
-        $this->layout = $layout;
-        $this->module = $module;
     }
 
     public function setLayout($layout)
@@ -21,34 +18,20 @@ class Layout
         $this->layout = $layout;
     }
 
-
-    public function load($data = null, $module, $return = false)
+    public function load($module, $layout = 'main', $data = array())
     {
-        $this->data = $data;
+        $this->pageData = $data;
+        $this->layout = $layout;
+        $this->module = $module;
         return $this->loadLayout($this->layout, $module);
-//        $dir = APPPATH . 'modules/' . $this->module . '/layouts/';
-//        $file = $dir . $this->layout . '/' . $this->layout . '.php';
-//        if (file_exists($file)) {
-//            $meta = require_once($file);
-//            foreach ($meta as $name => $attr) {
-//                if ($attr['type'] === 'layout') {
-//                    $this->loadLayout($name, $this->module);
-//
-//                } elseif ($attr['type'] === 'view') {
-//                    $this->loadView($name, $this->module);
-//                }
-//            }
-//        }
-//        $data['content'] = $this->CI->load->view($view, $data, true);
-//
-//        if ($return) {
-//            $output = $this->CI->load->view($this->layout, $data, true);
-//            return $output;
-//        } else {
-//            $this->CI->load->view($this->layout, $data, false);
-//        }
     }
 
+    /**
+     * 加载layout
+     * @param $name
+     * @param string $module
+     * @return mixed
+     */
     protected function loadLayout($name, $module = 'public')
     {
         $content = '';
@@ -61,27 +44,30 @@ class Layout
                 }
                 if ($attr['type'] === 'layout') {
                     $content .= $this->loadLayout($chileName, $customModule);
-
                 } elseif ($attr['type'] === 'view') {
                     $content .= $this->loadView($chileName, $customModule);
                 }
             }
-
-            $this->data['content'] = $content;
-            return $this->CI->load->view($name, $this->data, true);
+            $this->pageData['content'] = $content;
+            return $this->CI->load->view($name, $this->pageData, true);
         } else {
             //error
         }
     }
 
+    /**
+     * 加载view
+     * @param $name
+     * @param string $module
+     * @return mixed
+     */
     protected function loadView($name, $module = 'public')
     {
         if ($this->module !== $module) {
-            return $this->CI->load->view($module.'/'.$name, $this->data, true);
+            return $this->CI->load->view($module.'/'.$name, $this->pageData, true);
         } else {
-            return $this->CI->load->view($name, $this->data, true);
+            return $this->CI->load->view($name, $this->pageData, true);
         }
-
     }
 
     /**
@@ -95,14 +81,12 @@ class Layout
         $path = array(
             'modules',
             $module,
-            $type,
-            $name,
-            'meta.php'
+            'meta',
+            $name.'.php'
         );
-
         $file = APPPATH . implode(DIRECTORY_SEPARATOR, $path);
         if (file_exists($file)) {
-            return require_once($file);
+            return include_once($file);
         } else {
             return false;
         }
