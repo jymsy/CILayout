@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Layout
 {
     public $CI;
-    public $layout;
     protected $pageData = array();
     protected $module;
 
@@ -13,17 +12,11 @@ class Layout
         $this->CI =& get_instance();
     }
 
-    public function setLayout($layout)
-    {
-        $this->layout = $layout;
-    }
-
     public function load($layout, $module, $data = array())
     {
         $this->pageData = $data;
-        $this->layout = $layout;
         $this->module = $module;
-        return $this->loadLayout($this->layout, $module);
+        return $this->loadLayout($layout, $module);
     }
 
     /**
@@ -35,7 +28,6 @@ class Layout
     protected function loadLayout($name, $module = 'public')
     {
         $content = '';
-        $data = array();
         if ($meta = $this->requireMeta($module, 'layout', $name)) {
             foreach ($meta as $chileName => $attr) {
                 if (isset($attr['module'])) {
@@ -58,6 +50,7 @@ class Layout
             return $this->CI->load->view($name, $this->pageData, true);
         } else {
             //error
+            show_error('error', 500);
         }
     }
 
@@ -102,6 +95,12 @@ class Layout
         }
     }
 
+    /**
+     * 当没有设置module参数的时候是选择当前模块还是public模块
+     * @param $name
+     * @param $type
+     * @return bool true 当前模块|false pulic
+     */
     protected function isRequireCustom($name, $type)
     {
         $path = array(
