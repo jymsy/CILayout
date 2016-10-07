@@ -7,7 +7,6 @@ class Layout
     public $layout;
     protected $pageData = array();
     protected $module;
-//    public static $modulePath = APPPATH.'modules/';
 
     public function __construct()
     {
@@ -19,7 +18,7 @@ class Layout
         $this->layout = $layout;
     }
 
-    public function load($module, $layout = 'main', $data = array())
+    public function load($layout, $module, $data = array())
     {
         $this->pageData = $data;
         $this->layout = $layout;
@@ -42,15 +41,17 @@ class Layout
                 if (isset($attr['module'])) {
                     $customModule = $attr['module'];
                 } else {
-                    $customModule = $module;
+                    //没有设置module参数, 默认使用当前module的
+                    if ($this->isRequireCustom($chileName, $attr['type'])) {
+                        $customModule = $this->module;
+                    } else {
+                        $customModule = 'public';
+                    }
                 }
                 if ($attr['type'] === 'layout') {
                     $content .= $this->loadLayout($chileName, $customModule);
                 } elseif ($attr['type'] === 'view') {
-                    $data['model'] = $this->pageData;
-                    $data['meta'] = $attr;
-                    $data['name'] = $chileName;
-                    $content .= $this->loadView($chileName, $customModule, $data);
+                    $content .= $this->loadView($chileName, $customModule, $this->pageData);
                 }
             }
             $this->pageData['content'] = $content;
@@ -67,18 +68,18 @@ class Layout
      * @param array $data
      * @return mixed
      */
-    protected function loadView($name, $module = 'public', $data = array())
+    public function loadView($name, $module = 'public', $data = array())
     {
-        $viewPath = $name;
-        if ($this->module !== $module) {
-            if (!file_exists(APPPATH.'modules/'.$this->module.'/views/'.$name.'.php')) {
-                $viewPath = $module . '/' . $name;
-            }
-        }
-        return $this->CI->load->view($viewPath, $data, true);
+        $viewPath = $module . '/' . $name;;
+        $viewData['name'] = $name;
+        $viewData['model'] = $data;
+        $viewData['meta'] = $this->requireMeta($module, 'view', $name);
+
+        return $this->CI->load->view($viewPath, $viewData, true);
     }
 
     /**
+     * 加载布局配置文件
      * @param $module
      * @param $type
      * @param $name
@@ -90,11 +91,27 @@ class Layout
             'modules',
             $module,
             'meta',
+            $type.'s',
             $name . '.php'
         );
         $file = APPPATH . implode(DIRECTORY_SEPARATOR, $path);
         if (file_exists($file)) {
-            return include_once($file);
+            return require_once($file);
+        } else {
+            return false;
+        }
+    }
+
+    protected function isRequireCustom($name, $type)
+    {
+        $path = array(
+            'modules',
+            $this->module,
+            'views',
+            $name . '.php'
+        );
+        if (file_exists(APPPATH . implode(DIRECTORY_SEPARATOR, $path))) {
+            return true;
         } else {
             return false;
         }

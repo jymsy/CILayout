@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+    public $module = 'svip';
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -22,7 +24,9 @@ class Welcome extends CI_Controller {
 	{
 	    $this->load->library('layout');
 //        $this->load->library('layout');
-        $ret = $this->layout->load('svip', 'main', array('title' => 'jym'));
+        $ret = $this->layout->load('main', 'svip', array('title' => 'jym'));
+
+//        $ret = $this->layout->loadView('logo', $this->module, array('title' => 'jym'));
         echo $ret;
 //        echo 123;
 //		$this->load->view('welcome_message');
