@@ -36,6 +36,7 @@ class Layout
     protected function loadLayout($name, $module = 'public')
     {
         $content = '';
+        $data = array();
         if ($meta = $this->requireMeta($module, 'layout', $name)) {
             foreach ($meta as $chileName => $attr) {
                 if (isset($attr['module'])) {
@@ -46,7 +47,10 @@ class Layout
                 if ($attr['type'] === 'layout') {
                     $content .= $this->loadLayout($chileName, $customModule);
                 } elseif ($attr['type'] === 'view') {
-                    $content .= $this->loadView($chileName, $customModule);
+                    $data['model'] = $this->pageData;
+                    $data['meta'] = $attr;
+                    $data['name'] = $chileName;
+                    $content .= $this->loadView($chileName, $customModule, $data);
                 }
             }
             $this->pageData['content'] = $content;
@@ -60,9 +64,10 @@ class Layout
      * 加载view
      * @param $name
      * @param string $module
+     * @param array $data
      * @return mixed
      */
-    protected function loadView($name, $module = 'public')
+    protected function loadView($name, $module = 'public', $data = array())
     {
         $viewPath = $name;
         if ($this->module !== $module) {
@@ -70,7 +75,7 @@ class Layout
                 $viewPath = $module . '/' . $name;
             }
         }
-        return $this->CI->load->view($viewPath, $this->pageData, true);
+        return $this->CI->load->view($viewPath, $data, true);
     }
 
     /**
