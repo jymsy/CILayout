@@ -9,7 +9,7 @@ return array(
 //    'content' => array(
 //        'type' => 'layout'
 //    ),
-    'footer' => array(
+    'left_menu' => array(
         'type' => 'view',
 //        'module' => 'public'
     )
