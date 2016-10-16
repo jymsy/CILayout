@@ -1,41 +1,12 @@
-"use strict";
-(function($, App, window) {
+var $ = require('jquery');
 
-    App.CommunicationLayer = function (spec) {
-        var self = this;
+var init = function (a, b) {
+  return a+b;
+};
 
-        //与server + business-level逻辑通讯
+var minus = function (a, b) {
+  return a-b;
+};
 
-
-
-        return self;
-    };
-
-    App.performBinding = function (app, selector) {
-        //Handle all HTML-specific code here
-
-        //DOM wrapper element, all event handlers are bound to this element
-        var $wrapper = $(selector || window.document);
-
-        //绑定所有事件
-        $wrapper
-        //基础绑定
-            .on('click', '.-delete', function() {
-                //user clicked delete
-                //handle UI changes
-                //get necessary data
-                //call appropriate method on app
-                app.delete(data);
-            })
-            .on('click', '.-search', function () {
-                //user clicked search
-                //handle UI changes
-                //get necessary data
-                //call appropriate method on app
-                app.search(data);
-            })
-        // ...
-        ;
-    };
-
-})(jQuery, window.MyApp || (window.MyApp = {}), window);
+exports.init = init;
+exports.minus = minus;

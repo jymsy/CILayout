@@ -1,5 +1,4 @@
-var $ = require('jquery');
+var add = require('./js/ls_left_menu');
 
-module.exports = function (a, b) {
-    return a+b;
-};
+var c = add.minus(1,2);
+console.log(c);

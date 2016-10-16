@@ -44,12 +44,30 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(1);
+	var add = __webpack_require__(1);
 
-
+	var c = add.minus(1,2);
+	console.log(c);
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(2);
+
+	var init = function (a, b) {
+	  return a+b;
+	};
+
+	var minus = function (a, b) {
+	  return a-b;
+	};
+
+	exports.init = init;
+	exports.minus = minus;
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = jQuery;
