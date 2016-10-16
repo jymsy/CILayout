@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel='stylesheet' type='text/css' href='<?php echo base_url("/static/base.css"); ?>'>
-    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-    <script src="<?php echo base_url("/static/dist/bundle.js"); ?>"></script>
 </head>
 <body>
 <?php echo $content  ?>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="<?php echo base_url("/static/dist/bundle.js"); ?>"></script>
 </body>
 </html>

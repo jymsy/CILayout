@@ -1,8 +1,12 @@
 var $ = require('jquery');
 
-var init = function (a, b) {
-  return a+b;
+var init = function () {
+    $('.menu_v422').on('click', '.book_active',function () {
+        console.log('click');
+    });
 };
+
+
 
 var minus = function (a, b) {
   return a-b;

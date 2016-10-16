@@ -1,3 +1,6 @@
+var webpack = require('webpack');
+var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
 module.exports = {
     entry: './src/common.js',
     output: {
@@ -6,5 +9,15 @@ module.exports = {
     },
     externals: {
         jquery: 'jQuery'
-    }
+    },
+    plugins: [
+        new uglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            output: {
+                comments: false
+            }
+        })
+    ]
 };
