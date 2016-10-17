@@ -2,9 +2,9 @@ var webpack = require('webpack');
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 module.exports = {
-    entry: './src/common.js',
+    entry: './js/src/common.js',
     output: {
-        path: 'dist',
+        path: 'js/dist',
         filename: 'bundle.js'
     },
     externals: {

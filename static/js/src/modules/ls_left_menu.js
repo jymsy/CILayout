@@ -6,8 +6,6 @@ var init = function () {
     });
 };
 
-
-
 var minus = function (a, b) {
   return a-b;
 };
