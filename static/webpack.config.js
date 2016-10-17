@@ -5,7 +5,7 @@ module.exports = {
     entry: './js/src/common.js',
     output: {
         path: 'js/dist',
-        filename: 'bundle.js'
+        filename: 'bundle-[hash].js'
     },
     externals: {
         jquery: 'jQuery'
