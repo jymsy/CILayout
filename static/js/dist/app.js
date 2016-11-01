@@ -44,36 +44,10 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var leftMenu = __webpack_require__(1);
+	var leftMenu = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./modules/ls_left_menu\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	leftMenu.init();
 
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(2);
-
-	var minus = function (a, b) {
-	  return a-b;
-	};
-
-	module.exports = {
-	    init: function () {
-	        var $menu = $('.menu_v422');
-	        $menu.on('click', '.tadk',function () {
-	            $(this).addClass('tadk_active').removeClass('tadk');
-	            console.log(minus(2,3));
-	        });
-	    }
-	};
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = jQuery;
 
 /***/ }
 /******/ ]);

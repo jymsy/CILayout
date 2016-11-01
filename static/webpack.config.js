@@ -7,6 +7,21 @@ module.exports = {
         path: 'js/dist',
         filename: 'app.js'
     },
+    module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader'
+            },
+        ],
+    },
+    eslint: {
+        failOnWarning: true,
+        failOnError: true,
+        // emitError: true,
+        configFile: './.eslintrc'
+    },
     externals: {
         jquery: 'jQuery'
     },
