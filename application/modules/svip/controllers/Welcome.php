@@ -22,11 +22,18 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+        $this->output->parse_exec_vars = FALSE;
+        $this->output->set_header('Pragma: cache');
+        $this->output->set_header('Cache-Control: public');
+//        header('Expires: '.gmdate('D, d M Y H:i:s', $expiration).' GMT');
+        $expiration = time() + 60;
+        $this->output->set_header('Expires: '.gmdate('D, d M Y H:i:s', $expiration).' GMT');
+
         $this->load->helper('url');
 	    $this->load->library('layout');
 //        $this->load->library('layout');
         $ret = $this->layout->load('main', 'svip', array('title' => 'jym'));
-
+        echo time();
 //        $ret = $this->layout->loadView('logo', $this->module, array('title' => 'jym'));
         echo $ret;
 //        echo 123;

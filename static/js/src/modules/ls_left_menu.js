@@ -6,10 +6,13 @@ var minus = function (a, b) {
 
 module.exports = {
     init: function () {
-        var $menu = $('.menu_v422')
+        var $menu = $('.menu_v422');
         $menu.on('click', '.tadk', function () {
-            $(this).addClass('tadk_active').removeClass('tadk');
+            // $(this).addClass('tadk_active').removeClass('tadk');
             console.log(minus(2, 3));
+            $.get('http://localhost/index.php/svip/welcome', function (data) {
+                console.log(data);
+            });
         });
     }
 };
