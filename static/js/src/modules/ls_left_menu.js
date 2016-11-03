@@ -1,14 +1,18 @@
 var $ = require('jquery');
 
-var init = function () {
-    $('.menu_v422').on('click', '.book_active',function () {
-        console.log('click');
-    });
-};
-
 var minus = function (a, b) {
-  return a-b;
+    return a - b;
 };
 
-exports.init = init;
-exports.minus = minus;
+module.exports = {
+    init: function () {
+        var $menu = $('.menu_v422');
+        $menu.on('click', '.tadk', function () {
+            // $(this).addClass('tadk_active').removeClass('tadk');
+            console.log(minus(2, 3));
+            $.get('http://localhost/index.php/svip/welcome', function (data) {
+                console.log(data);
+            });
+        });
+    }
+};
