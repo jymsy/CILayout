@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var util = require('../../public/util');
 
 var minus = function (a, b) {
     return a - b;
@@ -10,9 +11,6 @@ module.exports = {
         $menu.on('click', '.tadk', function () {
             // $(this).addClass('tadk_active').removeClass('tadk');
             console.log(minus(2, 3));
-            $.get('http://localhost/index.php/svip/welcome', function (data) {
-                console.log(data);
-            });
         });
     }
 };
