@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.25.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb-base": "^9.0.0",
     "eslint-loader": "^1.6.0",
     "eslint-plugin-import": "^2.0.1",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
 }
