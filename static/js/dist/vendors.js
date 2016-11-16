@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		2:0
+/******/ 		3:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -91,23 +91,13 @@
 /******/ 	__webpack_require__.p = "static/js/dist/";
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */
+/******/ ({
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	module.exports = jQuery;
 
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = {
-	    call: function (param) {
-	        console.log('call');
-	    }
-	};
-
 /***/ }
-/******/ ]);
+
+/******/ });

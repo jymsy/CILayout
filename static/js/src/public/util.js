@@ -1,5 +1,12 @@
 module.exports = {
+    inited: false,
     call: function (param) {
-        console.log('call');
+        if (!this.inited) {
+            console.log('call');
+            this.inited = true;
+        } else {
+            console.log('inited');
+        }
+
     }
 };

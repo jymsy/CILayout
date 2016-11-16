@@ -1,4 +1,4 @@
-webpackJsonp([1],[
+webpackJsonp([2,1],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -10,7 +10,23 @@ webpackJsonp([1],[
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	    inited: false,
+	    call: function (param) {
+	        if (!this.inited) {
+	            console.log('call');
+	            this.inited = true;
+	        } else {
+	            console.log('inited');
+	        }
+
+	    }
+	};
+
+/***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 

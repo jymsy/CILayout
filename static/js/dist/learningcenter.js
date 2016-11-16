@@ -25,17 +25,17 @@ webpackJsonp([0],[
 	    init: function () {
 	        var $menu = $('.menu_v422');
 	        $menu.on('click', '.tadk', function () {
-	            var util = __webpack_require__(3);
-	            util.call();
+	            // var util = require('../../public/util');
+	            // util.call();
 	            // $(this).addClass('tadk_active').removeClass('tadk');
 	            // console.log(minus(2, 3));
 	            // $.get('http://localhost/index.php/svip/welcome', function (data) {
 	            //     console.log(data);
 	            // });
-	            // require.ensure(['../../public/util'], function (require) {
-	            //     var util = require('../../public/util');
-	            //     util.call();
-	            // });
+	            __webpack_require__.e/* nsure */(1, function (require) {
+	                var util = __webpack_require__(3);
+	                util.call();
+	            });
 	        });
 	    },
 	    clicked: function () {
