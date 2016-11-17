@@ -1337,5 +1337,11 @@ a.al:hover image {
     position: absolute;
     right: -3px;
     bottom: -25px;
-    background: url("image/notOpen_v422_image.png") no-repeat 0 2px
+    background: url("image/notOpen_v422_imag.png") no-repeat 0 2px
+}
+
+.leaf-loading {
+    width: 100%;
+    height: 800px;
+    background: 50% url('/static/image/loading-f2c6c.gif') no-repeat;
 }
