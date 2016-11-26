@@ -30,8 +30,8 @@ webpackJsonp([2,1],[
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
 	var util = __webpack_require__(3);
+	var $ = __webpack_require__(2);
 
 	var minus = function (a, b) {
 	    return a - b;
@@ -39,10 +39,13 @@ webpackJsonp([2,1],[
 
 	module.exports = {
 	    init: function () {
-	        var $menu = $('.menu_v422');
+	        var $menu = lib.$('.menu_v422');
 	        $menu.on('click', '.tadk', function () {
 	            // $(this).addClass('tadk_active').removeClass('tadk');
+	            util.call();
 	            console.log(minus(2, 3));
+	            util.call();
+
 	        });
 	    }
 	};
